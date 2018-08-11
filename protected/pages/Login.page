@@ -1,0 +1,60 @@
+<%@ Title="SIM-GURU - Login" %>
+<com:TContent ID="maincontent">
+<!-- BEGIN login-content -->
+<com:TPanel Visible="<%=$this->User->isGuest==true%>" CssClass="login-content">
+    <!-- BEGIN login-brand -->
+    <div class="login-brand">
+        <a href="#"><span class="logo"><i class="ti-infinite"></i></span> Sistem Informasi Guru Kab. Karimun</a>
+    </div>
+    <!-- END login-brand -->
+    <!-- BEGIN login-desc -->
+    <div class="login-desc">
+        Silahkan isi username dan password untuk mengakses sistem !!!
+    </div>
+    <!-- END login-desc -->
+    <!-- BEGIN login-form -->               
+    <div>
+        <div class="form-group" id="divUsername">
+            <label class="control-label">Username</label>            
+            <com:TTextBox ID="txtUsername" CssClass="form-control" />
+            <com:TRequiredFieldValidator ID="IsUsernameFilledValidator" ControlToValidate="txtUsername" Display="Dynamic" ValidationGroup="userlogin" Text="Mohon di isi username Anda !!!" FocusOnError="true" />
+        </div>
+        <div class="form-group" id="divUserpassword">
+            <label class="control-label">Password</label>
+            <com:TTextBox ID="txtPassword" CssClass="form-control" TextMode="Password" />
+            <com:TRequiredFieldValidator ID="IsUserpasswordFilledValidator" ControlToValidate="txtPassword" Display="Dynamic" ValidationGroup="userlogin" Text="Mohon di isi password Anda !!!" FocusOnError="true" />       
+        </div>        
+        <com:TActiveButton ID="btnLogin" Text="Login" CssClass="btn btn-primary" ValidationGroup="userlogin" Onclick="doLogin">
+            <prop:ClientSide.OnPreDispatch>                            
+                Pace.stop();
+                Pace.start();
+                $('#<%=$this->btnLogin->ClientId%>').prop('disabled',true);                     
+            </prop:ClientSide.OnPreDispatch>
+            <prop:ClientSide.OnLoading>
+                $('#<%=$this->btnLogin->ClientId%>').prop('disabled',true);                                                                     
+            </prop:ClientSide.OnLoading>
+            <prop:ClientSide.onComplete>                                    
+                $('#<%=$this->btnLogin->ClientId%>').prop('disabled',false);                                                                                                                                                                                                                
+            </prop:ClientSide.OnComplete>
+        </com:TActiveButton>
+    </div>
+    <!-- END login-form -->
+    <div class="m-t-20">
+        <com:TActiveCustomValidator ControlToValidate="txtUsername" Display="Dynamic" OnServerValidate="checkUsernameAndPassword" ValidationGroup="userlogin" />                                    
+        <com:TJavascriptLogger ID="loggerJS" />
+    </div>
+</com:TPanel>
+<com:TPanel Visible="<%=$this->User->isGuest==false%>" CssClass="login-content">
+    <!-- BEGIN login-brand -->
+    <div class="login-brand">
+        <a href="#"><span class="logo"><i class="ti-infinite"></i></span> Sistem Informasi Guru Kab. Karimun</a>
+    </div>
+    <!-- END login-brand -->
+    <!-- BEGIN login-desc -->
+    <div class="login-desc">
+        You have logged in, click <a href="<%=$this->Page->constructUrl('Home',true)%>">here</a> back to the dashboard.
+    </div>
+    <!-- END login-desc -->    
+</com:TPanel>
+<!-- END login-content -->
+</com:TContent>

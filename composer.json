@@ -1,0 +1,29 @@
+{
+	"name": "pradosoft/prado-app",
+	"type": "project",
+	"description": "DISDIK Kab. Karimun",
+	"license" : "proprietary",
+	"authors": [
+		{
+			"name": "Mochammad Rizki Romdoni",
+			"email": "mr.romdoni@gmail.com",
+			"role" : "Developer"
+		}
+	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://asset-packagist.org"
+		}
+	],
+	"require": {
+		"pradosoft/prado": "*",
+		"phpoffice/phpspreadsheet": "*"
+	},
+	"config": {
+		"vendor-dir": "protected/vendor"
+	},
+	"scripts": {
+
+	}	
+}
