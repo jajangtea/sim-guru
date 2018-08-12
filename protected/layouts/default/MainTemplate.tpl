@@ -17,6 +17,12 @@
         <!-- ================== END BASE CSS STYLE ================== -->	
         <link rel="stylesheet" href="<%=$this->Page->Theme->baseUrl%>/assets/css/aplikasi.css">    
         <com:TContentPlaceHolder ID="csscontent" />	
+        <style type="text/css">
+            .TDatePicker_default
+            {
+                z-index: 10000 !important;
+            }
+        </style>
     </com:THead>
     <body>
     <com:TForm>

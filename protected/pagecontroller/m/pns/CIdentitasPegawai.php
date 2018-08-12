@@ -33,7 +33,7 @@ class CIdentitasPegawai extends MainPageM {
 
     protected function populateData($search = false) {
         if ($search) {
-            $str = "SELECT kode,nama,alamat,idkecamatan,email,jumlah_rombel,status FROM sekolah";
+            $str = "SELECT * FROM pegawai";
             $txtsearch = addslashes($this->txtKriteria->Text);
             switch ($this->cmbKriteria->Text) {
                 case 'kode' :
@@ -48,8 +48,8 @@ class CIdentitasPegawai extends MainPageM {
                     break;
             }
         } else {
-            $jumlah_baris = $this->DB->getCountRowsOfTable("sekolah", 'kode');
-            $str = "SELECT s.kode,s.nama,s.alamat,k.nama_kecamatan,s.email,s.jumlah_rombel,s.status FROM sekolah s LEFT JOIN kecamatan k ON (s.idkecamatan=k.idkecamatan)";
+            $jumlah_baris = $this->DB->getCountRowsOfTable("pegawai", 'id_pegawai');
+            $str = "SELECT * FROM pegawai";
         }
         $this->RepeaterS->CurrentPageIndex = $_SESSION['currentPageSekolah']['page_num'];
         $this->RepeaterS->VirtualItemCount = $jumlah_baris;
@@ -65,7 +65,7 @@ class CIdentitasPegawai extends MainPageM {
             $limit = $this->setup->getSettingValue('default_pagesize');
             $_SESSION['currentPageSekolah']['page_num'] = 0;
         }
-        $str = "$str ORDER BY nama ASC LIMIT $offset,$limit";
+        $str = "$str ORDER BY nama_lengkap ASC LIMIT $offset,$limit";
         $r = $this->DB->getRecord($str, $offset + 1);
 
         $this->RepeaterS->DataSource = $r;
@@ -78,19 +78,28 @@ class CIdentitasPegawai extends MainPageM {
 
         $this->cmbAddJk->dataSource = $this->DMaster->getListJk();
         $this->cmbAddJk->dataBind();
-        
+
         $this->cmbAddAgama->dataSource = $this->DMaster->getListAgama();
         $this->cmbAddAgama->dataBind();
+        
+        $this->cmbAddSekolah->dataSource = $this->DMaster->getListSekolah();
+        $this->cmbAddSekolah->dataBind();
+        
+        $this->cmbAddBidangStudi->dataSource = $this->DMaster->getListBidangStudi();
+        $this->cmbAddBidangStudi->dataBind();
+        
+        $this->cmbAddStatusSertifikasi->dataSource = $this->DMaster->getListStatus();
+        $this->cmbAddStatusSertifikasi->dataBind();
     }
 
-    public function checkKode($sender, $param) {
-        $this->idProcess = $sender->getId() == 'addNidn' ? 'add' : 'edit';
-        $kode = $param->Value;
-        if ($kode != '') {
+    public function checkNIP($sender, $param) {
+        $this->idProcess = $sender->getId() == 'checkAddNIP' ? 'add' : 'edit';
+        $nip = $param->Value;
+        if ($nip != '') {
             try {
                 if ($this->hiddenid->Value != $kode) {
-                    if ($this->DB->checkRecordIsExist('kode', 'sekolah', $kode)) {
-                        throw new Exception("KODE sekolah ($kode) sudah tidak tersedia silahkan ganti dengan yang lain.");
+                    if ($this->DB->checkRecordIsExist('nip', 'pegawai', $nip)) {
+                        throw new Exception("NIP ($nip) sudah tidak tersedia silahkan ganti dengan yang lain.");
                     }
                 }
             } catch (Exception $e) {
@@ -98,61 +107,69 @@ class CIdentitasPegawai extends MainPageM {
                 $sender->ErrorMessage = $e->getMessage();
             }
         }
-    }
-
-    public function checkEmail($sender, $param) {
-        $this->idProcess = $sender->getId() == 'addEmail' ? 'add' : 'edit';
-        $email = $param->Value;
-        if ($email != '') {
-            try {
-                if ($this->hiddenemail->Value != $email) {
-                    if ($this->DB->checkRecordIsExist('email', 'sekolah', $email)) {
-                        throw new Exception("Email ($email) sudah tidak tersedia silahkan ganti dengan yang lain.");
-                    }
-                }
-            } catch (Exception $e) {
-                $param->IsValid = false;
-                $sender->ErrorMessage = $e->getMessage();
-            }
-        }
-    }
+    }    
 
     public function saveData($sender, $param) {
         if ($this->Page->isValid) {
-            $kode = addslashes($this->txtAddKode->Text);
-            $nama = strtoupper(addslashes($this->txtAddNama->Text));
-            $alamat_sekolah = strtoupper(addslashes($this->txtAddAlamat->Text));
-            $idkecamatan = $this->cmbAddKecamatan->Text;
+            $nip = addslashes($this->txtAddNIP->Text);
+            $nuptk = strtoupper(addslashes($this->txtAddNUPTK->Text));
+            $npwp = strtoupper(addslashes($this->txtAddNPWP->Text));
+            $nama_lengkap = $this->txtAddNama->Text;
+            $jk = addslashes($this->cmbAddJk->Text);
+            $tempat_lahir = addslashes($this->txtAddTempatLahir->Text);
+            $tgl_lahir = date('Y-m-d',$this->txtAddTanggalLahir->TimeStamp);
+            $agama = addslashes($this->cmbAddAgama->Text);
             $email = addslashes($this->txtAddEmail->Text);
-            $jumlah_rombel = addslashes($this->txtAddRombel->Text);
-
-            $str = "INSERT INTO sekolah SET kode='$kode',nama='$nama',alamat='$alamat_sekolah',idkecamatan='$idkecamatan',email='$email',jumlah_rombel='$jumlah_rombel'";
+            $gol_ruang = addslashes($this->txtAddGolongan->Text);
+            $pangkat = addslashes($this->txtAddPangkat->Text);
+            $status_kepegawaian = addslashes($this->txtAddStatusPegawai->Text);
+            $status_perkawinan = addslashes($this->txtAddStatusPerkawinan->Text);
+            $nama_suami_istri = addslashes($this->txtAddNamaSuami_Istri->Text);
+            $no_kartu = addslashes($this->txtAddNoKartu->Text);
+            $no_karis = addslashes($this->txtAddNoKaris->Text);
+            $no_karsu = addslashes($this->txtAddNoKarsu->Text);
+            $no_rek =  addslashes($this->txtAddNoRekening->Text);
+            $nm_bank = addslashes($this->txtAddNamaBank->Text);
+            $rek_bank_an = addslashes($this->txtAddAtasNama->Text);
+            $kode_sekolah = addslashes($this->cmbAddSekolah->Text);
+            $tmt =date('Y-m-d',$this->txtAddTMT->TimeStamp);
+            $status_sertifikasi = addslashes($this->cmbAddStatusSertifikasi->Text);
+            $kode_bidang_studi = addslashes($this->cmbAddBidangStudi->Text);
+            $th_sertifikasi = date('Y',$this->txtAddTahunSertifikasi->TimeStamp);
+            $no_sertifikasi = addslashes($this->txtAddNoSertifikasi->Text);
+            $no_nuks = addslashes($this->txtAddNoNUKS->Text);
+            $tgl_nuks_sertifikat = date('Y-m-d',$this->txtAddSertifikatNUKS->TimeStamp);
+            $predikat_nuks_sertifikat = addslashes($this->txtAddPredikatNUKS->Text);
+            $berjenjang_sertifikat = addslashes($this->txtAddSertifikatBerjenjang->Text);
+            $th_berjenjang_sertifikat = date('Y',$this->txtAddSertifikatBerjenjang->TimeStamp);
+            $no_hp = addslashes($this->txtAddNoHP->Text);
+            $alamat = addslashes($this->txtAddAlamat->Text);
+            $str = "INSERT INTO pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat'"; 
             $this->DB->insertRecord($str);
-
-            $this->Redirect('dmaster.Sekolah', true);
+            $this->Redirect('pns.IdentitasPegawai', true);
         }
     }
 
     public function editRecord($sender, $param) {
         $this->idProcess = 'edit';
-        $kode = $this->getDataKeyField($sender, $this->RepeaterS);
+        $id_pegawai = $this->getDataKeyField($sender, $this->RepeaterS);
         $this->hiddenid->Value = $kode;
 
-        $str = "SELECT kode,nama,alamat,idkecamatan,email,jumlah_rombel,status FROM sekolah WHERE kode='$kode'";
+       $str = "SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'";
         $r = $this->DB->getRecord($str);
         $result = $r[1];
 
-        $this->txtEditKode->Text = $result['kode'];
-        $this->txtEditNama->Text = $result['nama'];
-        $this->txtEditAlamat->Text = $result['alamat'];
-        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
-        $this->cmbEditKecamatan->dataBind();
-        $this->cmbEditKecamatan->Text = $result['idkecamatan'];
-        $this->txtEditEmail->Text = $result['email'];
-        $this->hiddenemail->Value = $result['email'];
-        $this->txtEditRombel->Text = $result['jumlah_rombel'];
-
-        $this->cmbEditStatus->Text = $result['status'];
+          $this->txtEditNIP->Text = $result['nip'];
+//        $this->txtEditNama->Text = $result['nama'];
+//        $this->txtEditAlamat->Text = $result['alamat'];
+//        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
+//        $this->cmbEditKecamatan->dataBind();
+//        $this->cmbEditKecamatan->Text = $result['idkecamatan'];
+//        $this->txtEditEmail->Text = $result['email'];
+//        $this->hiddenemail->Value = $result['email'];
+//        $this->txtEditRombel->Text = $result['jumlah_rombel'];
+//
+//        $this->cmbEditStatus->Text = $result['status'];
     }
 
     public function updateData($sender, $param) {
