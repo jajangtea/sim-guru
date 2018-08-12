@@ -81,13 +81,13 @@ class CIdentitasPegawai extends MainPageM {
 
         $this->cmbAddAgama->dataSource = $this->DMaster->getListAgama();
         $this->cmbAddAgama->dataBind();
-        
+
         $this->cmbAddSekolah->dataSource = $this->DMaster->getListSekolah();
         $this->cmbAddSekolah->dataBind();
-        
+
         $this->cmbAddBidangStudi->dataSource = $this->DMaster->getListBidangStudi();
         $this->cmbAddBidangStudi->dataBind();
-        
+
         $this->cmbAddStatusSertifikasi->dataSource = $this->DMaster->getListStatus();
         $this->cmbAddStatusSertifikasi->dataBind();
     }
@@ -107,7 +107,7 @@ class CIdentitasPegawai extends MainPageM {
                 $sender->ErrorMessage = $e->getMessage();
             }
         }
-    }    
+    }
 
     public function saveData($sender, $param) {
         if ($this->Page->isValid) {
@@ -117,7 +117,7 @@ class CIdentitasPegawai extends MainPageM {
             $nama_lengkap = $this->txtAddNama->Text;
             $jk = addslashes($this->cmbAddJk->Text);
             $tempat_lahir = addslashes($this->txtAddTempatLahir->Text);
-            $tgl_lahir = date('Y-m-d',$this->txtAddTanggalLahir->TimeStamp);
+            $tgl_lahir = date('Y-m-d', $this->txtAddTanggalLahir->TimeStamp);
             $agama = addslashes($this->cmbAddAgama->Text);
             $email = addslashes($this->txtAddEmail->Text);
             $gol_ruang = addslashes($this->txtAddGolongan->Text);
@@ -128,23 +128,23 @@ class CIdentitasPegawai extends MainPageM {
             $no_kartu = addslashes($this->txtAddNoKartu->Text);
             $no_karis = addslashes($this->txtAddNoKaris->Text);
             $no_karsu = addslashes($this->txtAddNoKarsu->Text);
-            $no_rek =  addslashes($this->txtAddNoRekening->Text);
+            $no_rek = addslashes($this->txtAddNoRekening->Text);
             $nm_bank = addslashes($this->txtAddNamaBank->Text);
             $rek_bank_an = addslashes($this->txtAddAtasNama->Text);
             $kode_sekolah = addslashes($this->cmbAddSekolah->Text);
-            $tmt =date('Y-m-d',$this->txtAddTMT->TimeStamp);
+            $tmt = date('Y-m-d', $this->txtAddTMT->TimeStamp);
             $status_sertifikasi = addslashes($this->cmbAddStatusSertifikasi->Text);
             $kode_bidang_studi = addslashes($this->cmbAddBidangStudi->Text);
-            $th_sertifikasi = date('Y',$this->txtAddTahunSertifikasi->TimeStamp);
+            $th_sertifikasi = date('Y', $this->txtAddTahunSertifikasi->TimeStamp);
             $no_sertifikasi = addslashes($this->txtAddNoSertifikasi->Text);
             $no_nuks = addslashes($this->txtAddNoNUKS->Text);
-            $tgl_nuks_sertifikat = date('Y-m-d',$this->txtAddSertifikatNUKS->TimeStamp);
+            $tgl_nuks_sertifikat = date('Y-m-d', $this->txtAddSertifikatNUKS->TimeStamp);
             $predikat_nuks_sertifikat = addslashes($this->txtAddPredikatNUKS->Text);
             $berjenjang_sertifikat = addslashes($this->txtAddSertifikatBerjenjang->Text);
-            $th_berjenjang_sertifikat = date('Y',$this->txtAddSertifikatBerjenjang->TimeStamp);
+            $th_berjenjang_sertifikat = date('Y', $this->txtAddSertifikatBerjenjang->TimeStamp);
             $no_hp = addslashes($this->txtAddNoHP->Text);
             $alamat = addslashes($this->txtAddAlamat->Text);
-            $str = "INSERT INTO pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat'"; 
+            $str = "INSERT INTO pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat'";
             $this->DB->insertRecord($str);
             $this->Redirect('pns.IdentitasPegawai', true);
         }
@@ -153,13 +153,46 @@ class CIdentitasPegawai extends MainPageM {
     public function editRecord($sender, $param) {
         $this->idProcess = 'edit';
         $id_pegawai = $this->getDataKeyField($sender, $this->RepeaterS);
-        $this->hiddenid->Value = $kode;
+        $this->hiddenid->Value = $id_pegawai;
 
-       $str = "SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'";
+        $str = "SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'";
         $r = $this->DB->getRecord($str);
         $result = $r[1];
 
-          $this->txtEditNIP->Text = $result['nip'];
+        $this->txtEditNIP->Text = $result['nip'];
+        $this->txtEditNUPTK->Text = $result['nuptk'];
+        $this->txtEditNPWP->Text = $result['npwp'];
+        $this->txtEditNama->Text;
+        $this->cmbEditJk->Text = $result['jk'];
+        $this->txtEditTempatLahir->Text = $result['tempat_lahir'];
+        // date('Y-m-d',$this->txtEditTanggalLahir->TimeStamp=$result['nip'];
+        $this->cmbEditAgama->Text = $result['agama'];
+        $this->txtEditEmail->Text = $result['email'];
+        $this->txtEditGolongan->Text = $result['nip'];
+        $this->txtEditPangkat->Text = $result['gol_ruang'];
+        $this->txtEditStatusPegawai->Text = $result['status_kepegawaian'];
+        $this->txtEditStatusPerkawinan->Text = $result['status_perkawinan'];
+        $this->txtEditNamaSuami_Istri->Text = $result['nama_suami_istri'];
+        $this->txtEditNoKartu->Text = $result['no_karti'];
+        $this->txtEditNoKaris->Text = $result['no_karis'];
+        $this->txtEditNoKarsu->Text = $result['no_karsu'];
+        $this->txtEditNoRekening->Text = $result['no_rek'];
+        $this->txtEditNamaBank->Text = $result['nm_bank'];
+        $this->txtEditAtasNama->Text = $result['rek_bank_an'];
+        $this->cmbEditSekolah->Text = $result['kode_sekolah'];
+        //$this->txtEditTMT = $result['tmt'];
+        $this->cmbEditStatusSertifikasi->Text = $result['status_sertifikasi'];
+        $this->cmbEditBidangStudi->Text = $result['kode_bidang_studi'];
+        //$this->txtEditTahunSertifikasi = $result['th_sertifikasi'];
+        $this->txtEditNoSertifikasi->Text = $result['no_sertifikasi'];
+        $this->txtEditNoNUKS->Text = $result['no_nuks'];
+        $this->txtEditSertifikatNUKS->Text = $result['tgl_nuks_sertifikat'];
+        $this->txtEditPredikatNUKS->Text = $result['predikat_nuks_sertifikat'];
+        $this->txtEditSertifikatBerjenjang->Text = $result['berjenjang_sertifikat'];
+        $this->txtEditNoHP->Text = $result['no_hp'];
+        $this->txtEditAlamat->Text = $result['alamat'];
+
+
 //        $this->txtEditNama->Text = $result['nama'];
 //        $this->txtEditAlamat->Text = $result['alamat'];
 //        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
@@ -175,26 +208,49 @@ class CIdentitasPegawai extends MainPageM {
     public function updateData($sender, $param) {
         if ($this->Page->isValid) {
             $kode_old = $this->hiddenid->Value;
-            $kode = addslashes($this->txtEditKode->Text);
-            $nama = strtoupper(addslashes($this->txtEditNama->Text));
-            $alamat_sekolah = strtoupper(addslashes($this->txtEditAlamat->Text));
-            $idkecamatan = $this->cmbEditKecamatan->Text;
+            $nip = addslashes($this->txtEditNIP->Text);
+            $nuptk = strtoupper(addslashes($this->txtEditNUPTK->Text));
+            $npwp = strtoupper(addslashes($this->txtEditNPWP->Text));
+            $nama_lengkap = $this->txtEditNama->Text;
+            $jk = addslashes($this->cmbEditJk->Text);
+            $tempat_lahir = addslashes($this->txtEditTempatLahir->Text);
+            $tgl_lahir = date('Y-m-d', $this->txtEditTanggalLahir->TimeStamp);
+            $agama = addslashes($this->cmbEditAgama->Text);
             $email = addslashes($this->txtEditEmail->Text);
-            $jumlah_rombel = addslashes($this->txtEditRombel->Text);
-            $status = $this->cmbEditStatus->Text;
-
-            $str = "UPDATE sekolah SET kode='$kode',nama='$nama',alamat='$alamat_sekolah',idkecamatan='$idkecamatan',email='$email',jumlah_rombel='$jumlah_rombel',status=$status WHERE kode=$kode_old";
+            $gol_ruang = addslashes($this->txtEditGolongan->Text);
+            $pangkat = addslashes($this->txtEditPangkat->Text);
+            $status_kepegawaian = addslashes($this->txtEditStatusPegawai->Text);
+            $status_perkawinan = addslashes($this->txtEditStatusPerkawinan->Text);
+            $nama_suami_istri = addslashes($this->txtEditNamaSuami_Istri->Text);
+            $no_kartu = addslashes($this->txtEditNoKartu->Text);
+            $no_karis = addslashes($this->txtEditNoKaris->Text);
+            $no_karsu = addslashes($this->txtEditNoKarsu->Text);
+            $no_rek = addslashes($this->txtEditNoRekening->Text);
+            $nm_bank = addslashes($this->txtEditNamaBank->Text);
+            $rek_bank_an = addslashes($this->txtEditAtasNama->Text);
+            $kode_sekolah = addslashes($this->cmbEditSekolah->Text);
+            $tmt = date('Y-m-d', $this->txtEditTMT->TimeStamp);
+            $status_sertifikasi = addslashes($this->cmbEditStatusSertifikasi->Text);
+            $kode_bidang_studi = addslashes($this->cmbEditBidangStudi->Text);
+            $th_sertifikasi = date('Y', $this->txtEditTahunSertifikasi->TimeStamp);
+            $no_sertifikasi = addslashes($this->txtEditNoSertifikasi->Text);
+            $no_nuks = addslashes($this->txtEditNoNUKS->Text);
+            $tgl_nuks_sertifikat = date('Y-m-d', $this->txtEditSertifikatNUKS->TimeStamp);
+            $predikat_nuks_sertifikat = addslashes($this->txtEditPredikatNUKS->Text);
+            $berjenjang_sertifikat = addslashes($this->txtEditSertifikatBerjenjang->Text);
+            $th_berjenjang_sertifikat = date('Y', $this->txtEditSertifikatBerjenjang->TimeStamp);
+            $no_hp = addslashes($this->txtEditNoHP->Text);
+            $alamat = addslashes($this->txtEditAlamat->Text);
+            $str = "UPDATE pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat' where id_pegawai='$kode_old'";
             $this->DB->updateRecord($str);
-
-            $this->Redirect('dmaster.Sekolah', true);
+            $this->Redirect('pns.IdentitasPegawai', true);
         }
     }
 
     public function deleteRecord($sender, $param) {
         $kode = $this->getDataKeyField($sender, $this->RepeaterS);
-        $this->DB->deleteRecord("sekolah WHERE kode=$kode");
-        $this->DB->deleteRecord("user WHERE kode_sekolah=$kode");
-        $this->redirect('dmaster.Sekolah', true);
+        $this->DB->deleteRecord("pegawai WHERE id_pegawai=$kode");
+        $this->Redirect('pns.IdentitasPegawai', true);
     }
 
 }

@@ -14,7 +14,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">TAMBAH IDENTITAS PEGAWAI</h4>
                     <div class="heading-elements">
-                        <a href="<%=$this->Page->constructUrl('dmaster.Sekolah',true)%>" class="btn btn-danger btn-xs">
+                        <a href="<%=$this->Page->constructUrl('pns.IdentitasPegawai',true)%>" class="btn btn-danger btn-xs">
                             <i class="ti ti-close"></i>
                         </a>
                     </div>
@@ -911,9 +911,9 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">&nbsp;</label>
                                 <div class="col-md-12">
-                                    <com:TActiveButton ID="btnUpdate" CssClass="btn btn-primary float-right" ValidationGroup="Editsekolah" Onclick="saveData">                       
+                                    <com:TActiveButton ID="btnUpdate" CssClass="btn btn-primary float-right" ValidationGroup="Editsekolah" Onclick="updateData">                       
                                         <prop:Text>                            
-                                            Save
+                                            Update
                                         </prop:Text>
                                         <prop:ClientSide.OnPreDispatch>                            
                                             Pace.stop();
@@ -949,7 +949,7 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label class="col-md-2 control-label">Kriteria :</label>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <com:TDropDownList ID="cmbKriteria" CssClass="form-control">                                                           
                                     <com:TListItem Text="KODE" Value="kode" />                                    
                                     <com:TListItem Text="NAMA PEGAWAI" Value="nama_pegawai" />
@@ -958,7 +958,7 @@
                         </div>
                         <div class="form-group" id="divtxtKriteria">
                             <label class="col-md-2 control-label">Isi Kriteria :</label>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <com:TTextBox ID="txtKriteria" CssClass="form-control" />                                                                            
                                 <com:TRequiredFieldValidator ID="spanKriteriaValidator2" ValidationGroup="filterForm" Display="Dynamic" ControlToValidate="txtKriteria" ErrorMessage="Input apa yang Anda cari, sesuai dengan kriteria yang Anda tentukan." FocusOnError="true" />                                      
                             </div>
