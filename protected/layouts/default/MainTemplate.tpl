@@ -141,6 +141,14 @@
                             </a>
                         </li>
                         <li class="nav-divider"></li>
+                        <li class="nav-header">Riwayat</li>
+                        <li<%=$this->Page->showKepangkatan===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Kepangkatan',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Kepangkatan</span>
+                            </a>
+                        </li>
+                        <li class="nav-divider"></li>
                         <li class="nav-header">Setting</li>
                         <li class="has-sub<%=$this->Page->showSettingUser===true?' active':''%>">
                             <a href="javascript:;">

@@ -1,0 +1,429 @@
+<%@ Title="Data Master - Identitas Pegawai" %>
+<com:TContent ID="moduleheader">
+    RIWAYAT KEPANGKATAN
+</com:TContent>
+<com:TContent ID="modulebreadcrumb">    
+    <li class="breadcrumb-item"><a href="#">DATA MASTER</a></li>
+    <li class="breadcrumb-item active">IDENTITAS PEGAWAI</li>
+</com:TContent>
+<com:TContent ID="maincontent">  
+    <com:TPanel Visible="<%= $this->getAddProcess(false) %>" CssClass="row">   
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <!-- BEGIN panel-heading -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">TAMBAH RIWAYAT KEPANGKATAN</h4>
+                    <div class="heading-elements">
+                        <a href="<%=$this->Page->constructUrl('riwayat.Kepangkatan',true)%>" class="btn btn-danger btn-xs">
+                            <i class="ti ti-close"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p class="desc">
+                        tambah data riwayat kepangkatan                 
+                    </p>             
+                    <div class="form-horizontal">
+                        <div class="form-group" id="divAddNIP">
+                            <label class="col-md-2 control-label">NIP:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbAddNIP" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldAddNIPValidator" InitialValue="none" ControlToValidate="cmbAddNIP" Display="Dynamic" ErrorMessage="Pilih Pegawai" ValidationGroup="addkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddNIP').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddNIP').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddGolongan">
+                            <label class="col-md-2 control-label">Golongan:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbAddGolongan" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldAddGolonganValidator" InitialValue="none" ControlToValidate="cmbAddGolongan" Display="Dynamic" ErrorMessage="Pilih Golongan" ValidationGroup="addkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddGolongan').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddGolongan').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddPangkat">
+                            <label class="col-md-2 control-label">Pangkat:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtAddPangkat" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddPangkatValidator" ControlToValidate="txtAddPangkat" Display="Dynamic" ErrorMessage="Isi Pangkat" ValidationGroup="addkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddPangkat').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddPangkat').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddNomorSK">
+                            <label class="col-md-2 control-label">Nomor SK:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtAddNomorSK" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddNomorSKValidator" ControlToValidate="txtAddNomorSK" Display="Dynamic" ErrorMessage="Isi Nomor SK" ValidationGroup="addkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddNomorSK').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddNomorSK').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddTanggalSK">
+                            <label class="col-md-2 control-label">Tanggal SK:</label>
+                            <div class="col-md-10">
+                                <com:TDatePicker ID="txtAddTanggalSK" DateFormat="dd-MMMM-yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddTanggalTMT">
+                            <label class="col-md-2 control-label">Tanggal TMT:</label>
+                            <div class="col-md-10">
+                                <com:TDatePicker ID="txtAddTanggalTMT" DateFormat="dd-MMMM-yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddPendidikan">
+                            <label class="col-md-2 control-label">Pendidikan:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtAddPendidikan" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddPendidikanValidator" ControlToValidate="txtAddPendidikan" Display="Dynamic" ErrorMessage="Isi Pangkat Pendidikan" ValidationGroup="addkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddPendidikan').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddPendidikan').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddSekolah">
+                            <label class="col-md-2 control-label">Unit Kerja:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbAddSekolah" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldAddSekolahValidator" InitialValue="none" ControlToValidate="cmbAddSekolah" Display="Dynamic" ErrorMessage="Pilih Sekolah" ValidationGroup="addkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddSekolah').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddSekolah').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">&nbsp;</label>
+                            <div class="col-md-10">
+                                <com:TActiveButton ID="btnSave" CssClass="btn btn-primary float-right" ValidationGroup="addkepangkatan" Onclick="saveData">                       
+                                    <prop:Text>                            
+                                        Save
+                                    </prop:Text>
+                                    <prop:ClientSide.OnPreDispatch>                            
+                                        Pace.stop();
+                                        Pace.start();
+                                        $('#<%=$this->btnSave->ClientId%>').prop('disabled',true);                      
+                                    </prop:ClientSide.OnPreDispatch>
+                                    <prop:ClientSide.OnLoading>
+                                        $('#<%=$this->btnSave->ClientId%>').prop('disabled',true);                                                                      
+                                    </prop:ClientSide.OnLoading>
+                                    <prop:ClientSide.onComplete>                                    
+                                        $('#<%=$this->btnSave->ClientId%>').prop('disabled',false);                                                                                                                                                                                                             
+                                    </prop:ClientSide.OnComplete>
+                                </com:TActiveButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </com:TPanel>
+    <com:TPanel Visible="<%= $this->getEditProcess(false) %>" CssClass="row">  
+        <com:THiddenField ID="hiddenid" />
+        <com:THiddenField ID="hiddenemail" />    
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <!-- BEGIN panel-heading -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">UBAH DATA KEPANGKATAN</h4>
+                    <div class="heading-elements">
+                        <a href="<%=$this->Page->constructUrl('dmaster.Sekolah',true)%>" class="btn btn-danger btn-xs">
+                            <i class="ti ti-close"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p class="desc">
+                        edit data identitas sekolah                 
+                    </p>             
+                    <div class="form-horizontal">
+                        <div class="form-group" id="divEditNIP">
+                            <label class="col-md-2 control-label">NIP:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbEditNIP" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldEditNIPValidator" InitialValue="none" ControlToValidate="cmbEditNIP" Display="Dynamic" ErrorMessage="Pilih Pegawai" ValidationGroup="Editkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditNIP').EditClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditNIP').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditGolongan">
+                            <label class="col-md-2 control-label">Golongan:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbEditGolongan" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldEditGolonganValidator" InitialValue="none" ControlToValidate="cmbEditGolongan" Display="Dynamic" ErrorMessage="Pilih Golongan" ValidationGroup="Editkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditGolongan').EditClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditGolongan').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditPangkat">
+                            <label class="col-md-2 control-label">Pangkat:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtEditPangkat" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldEditPangkatValidator" ControlToValidate="txtEditPangkat" Display="Dynamic" ErrorMessage="Isi Pangkat" ValidationGroup="Editkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditPangkat').EditClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditPangkat').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditNomorSK">
+                            <label class="col-md-2 control-label">Nomor SK:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtEditNomorSK" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldEditNomorSKValidator" ControlToValidate="txtEditNomorSK" Display="Dynamic" ErrorMessage="Isi Nomor SK" ValidationGroup="Editkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditNomorSK').EditClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditNomorSK').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditTanggalSK">
+                            <label class="col-md-2 control-label">Tanggal SK:</label>
+                            <div class="col-md-10">
+                                <com:TDatePicker ID="txtEditTanggalSK" DateFormat="dd-MMMM-yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditTanggalTMT">
+                            <label class="col-md-2 control-label">Tanggal TMT:</label>
+                            <div class="col-md-10">
+                                <com:TDatePicker ID="txtEditTanggalTMT" DateFormat="dd-MMMM-yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditPendidikan">
+                            <label class="col-md-2 control-label">Pendidikan:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtEditPendidikan" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldEditPendidikanValidator" ControlToValidate="txtEditPendidikan" Display="Dynamic" ErrorMessage="Isi Pangkat Pendidikan" ValidationGroup="Editkepangkatan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditPendidikan').EditClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditPendidikan').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditSekolah">
+                            <label class="col-md-2 control-label">Unit Kerja:</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbEditSekolah" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldEditSekolahValidator" InitialValue="none" ControlToValidate="cmbEditSekolah" Display="Dynamic" ErrorMessage="Pilih Sekolah" ValidationGroup="Editkepangkatan" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditSekolah').EditClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditSekolah').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">&nbsp;</label>
+                            <div class="col-md-10">
+                                <com:TActiveButton ID="btnUpdate" CssClass="btn btn-primary float-right" ValidationGroup="Editkepangkatan" Onclick="saveData">                       
+                                    <prop:Text>                            
+                                        Save
+                                    </prop:Text>
+                                    <prop:ClientSide.OnPreDispatch>                            
+                                        Pace.stop();
+                                        Pace.start();
+                                        $('#<%=$this->btnUpdate->ClientId%>').prop('disabled',true);                      
+                                    </prop:ClientSide.OnPreDispatch>
+                                    <prop:ClientSide.OnLoading>
+                                        $('#<%=$this->btnUpdate->ClientId%>').prop('disabled',true);                                                                      
+                                    </prop:ClientSide.OnLoading>
+                                    <prop:ClientSide.onComplete>                                    
+                                        $('#<%=$this->btnUpdate->ClientId%>').prop('disabled',false);                                                                                                                                                                                                             
+                                    </prop:ClientSide.OnComplete>
+                                </com:TActiveButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </com:TPanel>
+    <com:TPanel Visible="<%= $this->getDefaultProcess() %>" CssClass="row">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <!-- BEGIN panel-heading -->
+                <div class="panel-heading">
+                    <h4><i class="ti ti-search"></i> PENCARIAN DATA</h4>               
+                </div>
+                <div class="panel-body">
+                    <p class="desc">
+                        pencarian data riwayat kepangkatan                   
+                    </p>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Kriteria :</label>
+                            <div class="col-md-6">
+                                <com:TDropDownList ID="cmbKriteria" CssClass="form-control">                                                           
+                                    <com:TListItem Text="KODE" Value="kode" />                                    
+                                    <com:TListItem Text="NAMA PEGAWAI" Value="nama_pegawai" />
+                                </com:TDropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divtxtKriteria">
+                            <label class="col-md-2 control-label">Isi Kriteria :</label>
+                            <div class="col-md-6">
+                                <com:TTextBox ID="txtKriteria" CssClass="form-control" />                                                                            
+                                <com:TRequiredFieldValidator ID="spanKriteriaValidator2" ValidationGroup="filterForm" Display="Dynamic" ControlToValidate="txtKriteria" ErrorMessage="Input apa yang Anda cari, sesuai dengan kriteria yang Anda tentukan." FocusOnError="true" />                                      
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">&nbsp;</label>
+                            <div class="col-md-10">
+                                <com:TActiveButton ID="btnSearch" CssClass="btn btn-info"  OnClick="Page.searchRecord" ValidationGroup="filterForm" Attributes.Title="Cari">
+                                    <prop:Text>                                        
+                                        Cari                                        
+                                    </prop:Text>
+                                    <prop:ClientSide.OnPreDispatch>         
+                                        Pace.stop();
+                                        Pace.start();
+                                        $('#<%=$this->btnSearch->ClientId%>').prop('disabled',true); 
+                                    </prop:ClientSide.OnPreDispatch>
+                                    <prop:ClientSide.OnLoading>
+                                        $('#<%=$this->btnSearch->ClientId%>').prop('disabled',true);                       
+                                    </prop:ClientSide.OnLoading>
+                                    <prop:ClientSide.OnComplete>                                                                    
+                                        $('#<%=$this->btnSearch->ClientId%>').prop('disabled',false);                                                                                                                                                    
+                                    </prop:ClientSide.OnComplete>
+                                </com:TActiveButton>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <!-- BEGIN panel-heading -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">DAFTAR IDENTITAS PEGAWAI</h4>
+                    <div class="heading-elements">
+                        <com:TButton OnClick="addProcess" ID="add" CausesValidation="false" CssClass="btn btn-grey btn-sm" Attributes.Title="Tambah USER" ButtonType="Button" ButtonTag="Button">
+                            <prop:Text>
+                                <i class="ti ti-plus"></i
+                            </prop:Text>
+                        </com:TButton>
+                    </div>
+                </div>
+                <!-- END panel-heading -->
+                <!-- BEGIN panel-body -->
+                <div class="panel-body">
+                    <p class="desc">riwayat kepangkatan</p>
+                    <div class="table-responsive">
+                        <com:TActiveRepeater ID="RepeaterS" AllowPaging="true" AllowCustomPaging="true" DataKeyField="id">
+                            <prop:HeaderTemplate>			
+                                <table class="table table-striped table-hover">	
+                                    <thead>
+                                        <tr>                                            
+                                            <th scope="col" width="10">NO</th>
+                                            <th scope="col" width="100">NIP</th>
+                                            <th scope="col" width="300">NAMA</th>
+                                            <th scope="col" width="250">GOLONGAN</th>
+                                            <th scope="col" width="200">PANGKAT</th>
+                                            <th scope="col" width="150">NOMOR SK</th>
+                                            <th scope="col" width="150">TANGGAL SK</th>
+                                            <th scope="col" width="150">TMT</th>
+                                            <th scope="col" width="150">PENDIDIKAN</th>
+                                            <th scope="col" width="150">UNIT KERJA</th>
+                                            <th scope="col" width="100">AKSI</th>
+                                        </tr>								
+                                    </thead>
+                                    <tbody>
+                                        </prop:HeaderTemplate>
+                                    <prop:ItemTemplate>
+                                        <tr>
+                                            <td><%# $this->Data['no']%></td>
+                                            <td><%# $this->Data['nip']%></td>
+                                            <td><%# $this->Data['nama_lengkap']%></td>
+                                            <td><%# $this->Data['gol_ruang']%></td>		
+                                            <td><%# $this->Data['pangkat']%></td>
+                                            <td><%# $this->Data['nomor_sk']%></td>
+                                            <td><%# $this->Data['tanggal_sk']%></td>
+                                            <td><%# $this->Data['tmt']%></td>
+                                            <td><%# $this->Data['pendidikan']%></td>
+                                            <td><%# $this->Data['nama']%></td>
+                                            <td class="btn-col" style="white-space: nowrap">                                        
+                                        <com:TLinkButton Text="<i class='ti ti-pencil'></i>" OnClick="Page.editRecord" Attributes.Title="Ubah Data Pegawai" CssClass="btn btn-purple btn-xs" />
+                                        <com:TActiveLinkButton ID="btnDelete" Text="<i class='ti ti-trash'></i>" OnClick="Page.deleteRecord" ClientSide.PostState="false" Attributes.OnClick="if(!confirm('Apakah Anda ingin menghapus SEKOLAH ini ?')) return false;" Attributes.Title="Hapus Data SEKOLAH" CssClass="btn btn-danger btn-xs">
+                                            <prop:ClientSide.OnPreDispatch>         
+                                                Pace.stop();
+                                                Pace.start();
+                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);         
+                                            </prop:ClientSide.OnPreDispatch>
+                                            <prop:ClientSide.OnLoading>
+                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);                     
+                                            </prop:ClientSide.OnLoading>
+                                            <prop:ClientSide.OnComplete>                                                                    
+                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',false);                                                                                                                 
+                                            </prop:ClientSide.OnComplete>
+                                        </com:TActiveLinkButton>    
+                                        </td>				                                 
+                                        </tr>
+                                    </prop:ItemTemplate>				                
+                                    <prop:FooterTemplate>               
+                                        </tbody>                            
+                                </table>
+                                </prop:FooterTemplate>	
+                                <prop:EmptyTemplate>                                                       
+                                    <div class="alert alert-info alert-styled-left alert-bordered">
+                                        <span class="text-semibold">Info!</span>
+                                        Belum ada data yang bisa ditampilkan.
+                                    </div>
+                                </prop:EmptyTemplate>
+                        </com:TActiveRepeater>   
+                        <%include Application.layouts.default.CustomPaging%>                    
+                    </div>
+                </div>
+            </div>
+        </div>    		
+    </com:TPanel>
+    <%include Application.layouts.default.ModalMessageError%>
+</com:TContent>

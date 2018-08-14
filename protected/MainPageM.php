@@ -5,6 +5,11 @@ class MainPageM extends MainPage {
      * show menu data master
      */
     public $showDMaster=false; 
+    
+     /**     
+     * show menu showKepangkatan
+     */
+    public $showKepangkatan=false; 
      /**     
      * show menu IdentitasPegawai
      */
