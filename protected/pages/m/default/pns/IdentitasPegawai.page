@@ -1006,7 +1006,7 @@
                 <div class="panel-body">
                     <p class="desc">daftar sekolah</p>
                     <div class="table-responsive">
-                        <com:TActiveRepeater ID="RepeaterS" AllowPaging="true" AllowCustomPaging="true" DataKeyField="id_pegawai">
+                        <com:TActiveRepeater ID="RepeaterS" AllowPaging="true" AllowCustomPaging="true" DataKeyField="nip">
                             <prop:HeaderTemplate>			
                                 <table class="table table-striped table-hover">	
                                     <thead>
