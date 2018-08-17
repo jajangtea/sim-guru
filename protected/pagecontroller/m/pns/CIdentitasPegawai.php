@@ -82,9 +82,6 @@ class CIdentitasPegawai extends MainPageM {
         $this->cmbAddAgama->dataSource = $this->DMaster->getListAgama();
         $this->cmbAddAgama->dataBind();
 
-        $this->cmbAddIdentitasPegawai->dataSource = $this->DMaster->getListIdentitasPegawai();
-        $this->cmbAddIdentitasPegawai->dataBind();
-
         $this->cmbAddBidangStudi->dataSource = $this->DMaster->getListBidangStudi();
         $this->cmbAddBidangStudi->dataBind();
 
