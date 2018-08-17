@@ -22,9 +22,7 @@
                 <div class="panel-body">
                     <p class="desc">
                         tambah data riwayat kepangkatan                 
-                    </p>           
-                    <div class="row">
-                        <div class="col">
+                    </p>             
                     <div class="form-horizontal">
                         <div class="form-group" id="divAddNIP">
                             <label class="col-md-2 control-label">NIP:</label>
