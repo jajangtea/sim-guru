@@ -5,8 +5,8 @@
 		<module id="auth" class="TAuthManager" UserManager="otorisasi_user" LoginPage="Login" />
 	</modules>
 	<authorization>        
-        <allow roles="m" pages="m.*,d.*" />
-		<allow roles="d" pages="d.*" />        
+        <allow roles="m" pages="m.*,s.*" />
+		<allow roles="d" pages="s.*" />        
         <allow pages="Home,Login" users="*" />
 		<deny users="*" />		
 	</authorization>

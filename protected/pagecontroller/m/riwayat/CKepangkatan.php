@@ -143,26 +143,29 @@ class CKepangkatan extends MainPageM {
 
     public function editRecord($sender, $param) {
         $this->idProcess = 'edit';
-        
         $id_kepangkatan = $this->getDataKeyField($sender, $this->RepeaterS);
         $this->hiddenid->Value = $id_kepangkatan;
 
-        $str = "SELECT * FROM r_kepangkatan WHERE $id_kepangkatan='$id_kepangkatan'";
+
+        $str = "SELECT * FROM r_kepangkatan WHERE id_kepangkatan='$id_kepangkatan'";
+        $this->DB->setFieldTable(array('id', 'golongan', 'pangkat', 'nomor_sk', 'tanggal_sk', 'tmt', 'pendidikan', 'unit_kerja', 'nip'));
         $r = $this->DB->getRecord($str);
         $result = $r[1];
-
-        $this->cmbEditNIP->Text = $result['nip'];
-        
-        $this->cmbAddNIP->dataSource = $this->DMaster->getListNIP();
-        $this->cmbAddNIP->dataBind();
-        $this->cmbAddSekolah->dataSource = $this->DMaster->getListSekolah();
-        $this->cmbAddSekolah->dataBind();
-        $this->cmbAddGolongan->dataSource = $this->DMaster->getListGolongan();
-        $this->cmbAddGolongan->dataBind();
-
-
-//        $this->txtEditNama->Text = $result['nama'];
-//        $this->txtEditAlamat->Text = $result['alamat'];
+//        
+//        $str_pegawai = "SELECT * FROM pegawai WHERE id='$id_kepangkatan'";
+//        $datakepangkatan = $this->DB->getRecord($str_pegawai);
+//        $this->DB->setFieldTable(array('id', 'nama_lengkap'));
+//        $r = $this->DB->getRecord($str);
+//        $idpegawai=$r[1]['id'];
+//
+//
+//        $str = "SELECT * FROM r_kepangkatan WHERE id_kepangkatan='$id_kepangkatan'";
+//        while (list($k, $v) = each($datakepangkatan)) {
+//            $idkepangkatan = $v['id'];
+//            $daftar_pegawai[$idkepangkatan] = $v['nama'] . '[' . $v['nidn'] . ']';
+//        }
+        $this->txtEditNomorSK->Text = $result['nomor_sk'];
+ //       $this->txtEditAlamat->Text = $result['alamat'];
 //        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
 //        $this->cmbEditKecamatan->dataBind();
 //        $this->cmbEditKecamatan->Text = $result['idkecamatan'];
@@ -177,7 +180,7 @@ class CKepangkatan extends MainPageM {
         if ($this->Page->isValid) {
             $kode_old = $this->hiddenid->Value;
             $nip = addslashes($this->txtEditNIP->Text);
-           
+
             $th_berjenjang_sertifikat = date('Y', $this->txtEditSertifikatBerjenjang->TimeStamp);
             $no_hp = addslashes($this->txtEditNoHP->Text);
             $alamat = addslashes($this->txtEditAlamat->Text);

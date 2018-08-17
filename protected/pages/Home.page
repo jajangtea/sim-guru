@@ -2,3 +2,4 @@
 <com:TContent ID="maincontent">
 <a href="<%=$this->constructUrl('Login')%>">Login</a>
 </com:TContent>
+
