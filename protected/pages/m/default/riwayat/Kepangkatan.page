@@ -1,10 +1,10 @@
-<%@ Title="Data Master - Identitas Pegawai" %>
+<%@ Title="Riwayat - Kepangkatan" %>
 <com:TContent ID="moduleheader">
     RIWAYAT KEPANGKATAN
 </com:TContent>
 <com:TContent ID="modulebreadcrumb">    
-    <li class="breadcrumb-item"><a href="#">DATA MASTER</a></li>
-    <li class="breadcrumb-item active">IDENTITAS PEGAWAI</li>
+    <li class="breadcrumb-item"><a href="#">RIWAYAT</a></li>
+    <li class="breadcrumb-item active">KEPANGKATAN</li>
 </com:TContent>
 <com:TContent ID="maincontent">  
     <com:TPanel Visible="<%= $this->getAddProcess(false) %>" CssClass="row">   
@@ -288,7 +288,32 @@
         </div>    
     </com:TPanel>
     <com:TPanel Visible="<%= $this->getDefaultProcess() %>" CssClass="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="ti ti-search"></i> FILTER DATA</h4>               
+                </div>
+                <div class="panel-body">
+                    <p class="desc">
+                        filter data riwayat kepangkatan berdasarkan sekolah                   
+                    </p>                    
+                    <div class="form-group">
+                        <label>Sekolah :</label> 
+                        <com:TActiveDropDownList ID="cmbSekolah" CssClass="form-control" OnCallBack="filterSekolah">                                                                                               
+                            <prop:ClientSide.OnLoading>     
+                                Pace.stop();
+                                Pace.start();
+                                $('#<%=$this->cmbSekolah->ClientId%>').prop('disabled',true); 
+                            </prop:ClientSide.OnLoading>
+                            <prop:ClientSide.OnComplete>     
+                                $('#<%=$this->cmbSekolah->ClientId%>').prop('disabled',false);
+                            </prop:ClientSide.OnComplete>
+                        </com:TActiveDropDownList>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
@@ -301,16 +326,16 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label class="col-md-2 control-label">Kriteria :</label>
-                            <div class="col-md-6">
-                                <com:TDropDownList ID="cmbKriteria" CssClass="form-control">                                                           
-                                    <com:TListItem Text="KODE" Value="kode" />                                    
-                                    <com:TListItem Text="NAMA PEGAWAI" Value="nama_pegawai" />
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbKriteria" CssClass="form-control">
+                                    <com:TListItem Value="nip" Text="NIP" />
+                                    <com:TListItem Value="nama" Text="NAMA PEGAWAI" />
                                 </com:TDropDownList>
                             </div>
                         </div>
                         <div class="form-group" id="divtxtKriteria">
                             <label class="col-md-2 control-label">Isi Kriteria :</label>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <com:TTextBox ID="txtKriteria" CssClass="form-control" />                                                                            
                                 <com:TRequiredFieldValidator ID="spanKriteriaValidator2" ValidationGroup="filterForm" Display="Dynamic" ControlToValidate="txtKriteria" ErrorMessage="Input apa yang Anda cari, sesuai dengan kriteria yang Anda tentukan." FocusOnError="true" />                                      
                             </div>
@@ -340,11 +365,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
-                    <h4 class="panel-title">DAFTAR IDENTITAS PEGAWAI</h4>
+                    <h4 class="panel-title">DAFTAR PANGKAT PEGAWAI</h4>
                     <div class="heading-elements">
                         <com:TButton OnClick="addProcess" ID="add" CausesValidation="false" CssClass="btn btn-grey btn-sm" Attributes.Title="Tambah USER" ButtonType="Button" ButtonTag="Button">
                             <prop:Text>
