@@ -5,7 +5,10 @@ class MainPageM extends MainPage {
      * show menu data master
      */
     public $showDMaster=false; 
-    
+     /**     
+     * show menu showPekerjaan
+     */
+    public $showPekerjaan=false; 
      /**     
      * show menu showKepangkatan
      */
@@ -26,6 +29,10 @@ class MainPageM extends MainPage {
      * show page Sekolah [datamaster]
      */
     public $showSekolah=false; 
+    /**     
+     * show page Guru [datamaster]
+     */
+    public $showGuru=false; 
     /**     
      * show menu setting user
      */

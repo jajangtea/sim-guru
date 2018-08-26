@@ -1,31 +1,32 @@
-<%@ Title="SETTING - USER DISDIK" %>
+<%@ Title="SETTING - USER GURU" %>
 <com:TContent ID="moduleheader">
-    USER DISDIK
+    USER GURU
 </com:TContent>
 
 <com:TContent ID="modulebreadcrumb">
     <li class="breadcrumb-item"><a href="#">USER</a></li>
-    <li class="breadcrumb-item active">DISDIK</li>
+    <li class="breadcrumb-item active">Guru</li>
 </com:TContent>
 
 <com:TContent ID="maincontent">
     <com:TPanel Visible="<%= $this->getEditProcess(false) %>" CssClass="row">
         <com:THiddenField ID="hiddenid" />
         <com:THiddenField ID="hiddenusername" />
+        <com:THiddenField ID="hiddenkodesekolah"/>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
                     <h4 class="panel-title">UBAH USER</h4>
                     <div class="heading-elements">
-                        <a href="<%=$this->Page->constructUrl('setting.UserDISDIK',true)%>" class="btn btn-danger btn-xs">
+                        <a href="<%=$this->Page->constructUrl('setting.UserSekolah',true)%>" class="btn btn-danger btn-xs">
                             <i class="ti ti-close"></i>
                         </a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <p class="desc">
-                        Ubah pengguna untuk di DISDIK	        		
+                        Ubah pengguna untuk guru	        		
                     </p>
                     <div class="form-horizontal">
                         <div class="form-group" id="divEditUsername">
@@ -64,6 +65,20 @@
                                 </com:TRequiredFieldValidator>                   
                             </div>
                         </div>
+                        <div class="form-group" id="divEditSekolah">
+                            <label class="col-md-2 control-label">Nama Sekolah</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbEditSekolah" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldEditSekolahValidator" InitialValue="none" ControlToValidate="cmbEditSekolah" Display="Dynamic" ErrorMessage="Pilih" ValidationGroup="addpegawai" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditSekolah').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditSekolah').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">&nbsp;</label>
                             <div class="col-md-10">
@@ -98,14 +113,14 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">TAMBAH USER</h4>
                     <div class="heading-elements">
-                        <a href="<%=$this->Page->constructUrl('setting.UserDISDIK',true)%>" class="btn btn-danger btn-xs">
+                        <a href="<%=$this->Page->constructUrl('setting.UserSekolah',true)%>" class="btn btn-danger btn-xs">
                             <i class="ti ti-close"></i>
                         </a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <p class="desc">
-                        Tambah pengguna untuk di DISDIK	        		
+                        Tambah pengguna untuk guru		
                     </p>
                     <div class="form-horizontal">
                         <div class="form-group" id="divAddUsername">
@@ -142,6 +157,20 @@
                                         $('#divAddPassword').removeClass('has-error');		                            
                                     </prop:ClientSide.OnValidationSuccess>
                                 </com:TRequiredFieldValidator>                   
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddSekolah">
+                            <label class="col-md-2 control-label">Nama Sekolah</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbAddSekolah" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldAddSekolahValidator" InitialValue="none" ControlToValidate="cmbAddSekolah" Display="Dynamic" ErrorMessage="Pilih" ValidationGroup="addpegawai" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddSekolah').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddSekolah').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group">
@@ -188,7 +217,7 @@
                 <!-- END panel-heading -->
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
-                    <p class="desc">daftar pengguna DISDIK</p>
+                    <p class="desc">daftar pengguna Sekolah</p>
                     <div class="table-responsive">
                         <com:TActiveRepeater ID="RepeaterS" DataKeyField="userid" AllowPaging="true" PageSize="10" AllowCustomPaging="true">
                             <prop:HeaderTemplate>	
@@ -197,7 +226,7 @@
                                         <tr>
                                             <th width="15">NO</th>                                
                                             <th>USERNAME</th>
-                                            <th>NAMA SEKOLAH</th>                        
+                                            <th>Guru</th>                        
                                             <th width="120">AKSI</th>
                                         </tr>								
                                     </thead>

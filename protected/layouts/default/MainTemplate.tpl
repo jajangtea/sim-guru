@@ -148,6 +148,12 @@
                                 <span>Kepangkatan</span>
                             </a>
                         </li>
+                        <li<%=$this->Page->showPekerjaan===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Pekerjaan',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Pekerjaan</span>
+                            </a>
+                        </li>
                         <li class="nav-divider"></li>
                         <li class="nav-header">Setting</li>
                         <li class="has-sub<%=$this->Page->showSettingUser===true?' active':''%>">

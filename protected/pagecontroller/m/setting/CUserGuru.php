@@ -2,17 +2,18 @@
 
 prado::using('Application.MainPageM');
 
-class CUserDISDIK extends MainPageM {
+class CUserGuru extends MainPageM {
 
     public function onLoad($param) {
         parent::onLoad($param);
+        $this->createObj('DMaster');
         $this->showSettingUser = true;
-        $this->showUserDISDIK = true;
+        $this->showGuru = true;
         if (!$this->IsPostBack && !$this->IsCallBack) {
-            if (!isset($_SESSION['currentPageUserDISDIK']) || $_SESSION['currentPageUserDISDIK']['page_name'] != 'm.UserDISDIK') {
-                $_SESSION['currentPageUserDISDIK'] = array('page_name' => 'm.UserDISDIK', 'page_num' => 0, 'search' => false);
+            if (!isset($_SESSION['currentPageUserGuru']) || $_SESSION['currentPageUserGuru']['page_name'] != 'm.UserGuru') {
+                $_SESSION['currentPageUserGuru'] = array('page_name' => 'm.UserGuru', 'page_num' => 0, 'search' => false);
             }
-            $_SESSION['currentPageUserDISDIK']['search'] = false;
+            $_SESSION['currentPageUserGuru']['search'] = false;
             $this->populateData();
         }
     }
@@ -22,12 +23,12 @@ class CUserDISDIK extends MainPageM {
     }
 
     public function Page_Changed($sender, $param) {
-        $_SESSION['currentPageUserDISDIK']['page_num'] = $param->NewPageIndex;
+        $_SESSION['currentPageUserGuru']['page_num'] = $param->NewPageIndex;
         $this->populateData();
     }
 
     protected function populateData() {
-        $this->RepeaterS->CurrentPageIndex = $_SESSION['currentPageUserDISDIK']['page_num'];
+        $this->RepeaterS->CurrentPageIndex = $_SESSION['currentPageUserGuru']['page_num'];
         $jumlah_baris = $this->DB->getCountRowsOfTable('user where page="m"', 'userid');
         $this->RepeaterS->VirtualItemCount = $jumlah_baris;
         $currentPage = $this->RepeaterS->CurrentPageIndex;
@@ -40,9 +41,9 @@ class CUserDISDIK extends MainPageM {
         if ($limit < 0) {
             $offset = 0;
             $limit = 10;
-            $_SESSION['currentPageUserDISDIK']['page_num'] = 0;
+            $_SESSION['currentPageUserGuru']['page_num'] = 0;
         }
-        $str = "SELECT userid, username,s.nama as sekolah, page FROM user u join sekolah s on u.kode_sekolah=s.kode where page='m' ORDER BY username ASC LIMIT $offset,$limit";
+        $str = "SELECT userid, username,s.nama as sekolah, page FROM user u join sekolah s on u.kode_sekolah=s.kode where page='g' ORDER BY username ASC LIMIT $offset,$limit";
         $r = $this->DB->getRecord($str, $offset + 1);
 
         $this->RepeaterS->DataSource = $r;
@@ -53,6 +54,8 @@ class CUserDISDIK extends MainPageM {
 
     public function addProcess($sender, $param) {
         $this->idProcess = 'add';
+        $this->cmbAddSekolah->dataSource = $this->DMaster->getListSekolah();
+        $this->cmbAddSekolah->dataBind();
     }
 
     public function checkUsername($sender, $param) {
@@ -77,33 +80,39 @@ class CUserDISDIK extends MainPageM {
             $username = addslashes($this->txtAddUsername->Text);
             $userpassword = strtoupper(addslashes($this->txtAddPassword->Text));
             $data_password = $this->Pengguna->createHashPassword($userpassword);
+            $kode_sekolah = $this->cmbAddSekolah->Text;
 
             $userpassword = $data_password['password'];
             $salt = $data_password['salt'];
 
-            $str = "INSERT INTO user SET username='$username', userpassword='$userpassword', salt='$salt', page='m',theme='default', photo_profile='resources/userimages/no_photo.png' ";
+            $str = "INSERT INTO user SET username='$username', userpassword='$userpassword', salt='$salt', page='g',theme='default',kode_sekolah='$kode_sekolah', photo_profile='resources/userimages/no_photo.png' ";
             $this->DB->insertRecord($str);
             $this->Pengguna->insertNewActivity($this->Page->getPagePath(), "Menambah data user dengan username ( $username) berhasil dilakukan.");
-            $this->redirect('setting.UserDISDIK', true);
+            $this->redirect('setting.UserGuru', true);
         }
     }
 
     public function editRecord($sender, $param) {
         $this->idProcess = 'edit';
         $id = $this->getDataKeyField($sender, $this->RepeaterS);
-        $result = $this->DB->getRecord("SELECT userid,username from user WHERE userid='$id'");
-        $this->hiddenid->Value = $id;
+        $result = $this->DB->getRecord("SELECT userid,username,kode_sekolah from user WHERE userid='$id'");
+        $this->hiddenid->Value =$id;
+        $this->hiddenkodesekolah->Value=$result[1]['kode_sekolah'];
         $this->txtEditUsername->Text = $result[1]['username'];
         $this->hiddenusername->Value = $result[1]['username'];
+        $this->cmbEditSekolah->dataSource = $this->DMaster->getListSekolah();
+        $this->cmbEditSekolah->dataBind();
+        $this->cmbEditSekolah->Text = $result[1]['kode_sekolah'];
     }
 
     public function updateData($sender, $param) {
         if ($this->Page->IsValid) {
             $id = $this->hiddenid->Value;
-            $username = addslashes($this->txtAddUsername->Text);
-            $userpassword = strtoupper(addslashes($this->txtAddPassword->Text));
+            $kode=$this->hiddenkodesekolah->Value;
+            $username = addslashes($this->txtEditUsername->Text);
+            $userpassword = strtoupper(addslashes($this->txtEditPassword->Text));
             if ($userpassword == '') {
-                $str = "UPDATE user SET username='$username' WHERE userid=$id";
+                $str = "UPDATE user SET username='$username' kode_sekolah='$kode' WHERE userid=$id";
                 $this->DB->updateRecord($str);
             } else {
                 $data_password = $this->Pengguna->createHashPassword($userpassword);
@@ -111,12 +120,12 @@ class CUserDISDIK extends MainPageM {
                 $userpassword = $data_password['password'];
                 $salt = $data_password['salt'];
 
-                $str = "UPDATE user SET username='$username', userpassword='$userpassword', salt='$salt', page='m',theme='default', photo_profile='resources/userimages/no_photo.png' WHERE userid=$id";
+                $str = "UPDATE user SET username='$username',kode_sekolah='$kode', userpassword='$userpassword', salt='$salt', page='g',theme='default', photo_profile='resources/userimages/no_photo.png' WHERE userid=$id";
                 $this->DB->updateRecord($str);
             }
 
             $this->Pengguna->insertNewActivity($this->Page->getPagePath(), "Mengubah data user dengan username ( $username) berhasil dilakukan.");
-            $this->redirect('setting.UserDISDIK', true);
+            $this->redirect('setting.UserGuru', true);
         }
     }
 
@@ -124,7 +133,7 @@ class CUserDISDIK extends MainPageM {
         $this->idProcess = 'edit';
         $id = $this->getDataKeyField($sender, $this->RepeaterS);
         $this->DB->deleteRecord("user WHERE userid=$id");
-        $this->redirect('setting.UserDISDIK', true);
+        $this->redirect('setting.UserGuru', true);
     }
 
 }
