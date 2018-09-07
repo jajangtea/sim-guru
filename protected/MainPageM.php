@@ -6,6 +6,10 @@ class MainPageM extends MainPage {
      */
     public $showDMaster=false; 
      /**     
+     * show menu showPendidikan
+     */
+    public $showPendidikan=false; 
+     /**     
      * show menu showPekerjaan
      */
     public $showPekerjaan=false; 

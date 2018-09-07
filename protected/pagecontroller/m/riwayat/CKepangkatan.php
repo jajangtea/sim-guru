@@ -102,42 +102,20 @@ class CKepangkatan extends MainPageM {
 
     public function saveData($sender, $param) {
         if ($this->Page->isValid) {
-            $nip = addslashes($this->txtAddNIP->Text);
-            $nuptk = strtoupper(addslashes($this->txtAddNUPTK->Text));
-            $npwp = strtoupper(addslashes($this->txtAddNPWP->Text));
-            $nama_lengkap = $this->txtAddNama->Text;
-            $jk = addslashes($this->cmbAddJk->Text);
-            $tempat_lahir = addslashes($this->txtAddTempatLahir->Text);
-            $tgl_lahir = date('Y-m-d', $this->txtAddTanggalLahir->TimeStamp);
-            $agama = addslashes($this->cmbAddAgama->Text);
-            $email = addslashes($this->txtAddEmail->Text);
-            $gol_ruang = addslashes($this->txtAddGolongan->Text);
+            $nip = addslashes($this->cmbAddNIP->Text);
+            $golongan = addslashes($this->cmbAddGolongan->Text);
             $pangkat = addslashes($this->txtAddPangkat->Text);
-            $status_kepegawaian = addslashes($this->txtAddStatusPegawai->Text);
-            $status_perkawinan = addslashes($this->txtAddStatusPerkawinan->Text);
-            $nama_suami_istri = addslashes($this->txtAddNamaSuami_Istri->Text);
-            $no_kartu = addslashes($this->txtAddNoKartu->Text);
-            $no_karis = addslashes($this->txtAddNoKaris->Text);
-            $no_karsu = addslashes($this->txtAddNoKarsu->Text);
-            $no_rek = addslashes($this->txtAddNoRekening->Text);
-            $nm_bank = addslashes($this->txtAddNamaBank->Text);
-            $rek_bank_an = addslashes($this->txtAddAtasNama->Text);
-            $kode_sekolah = addslashes($this->cmbAddKepangkatan->Text);
-            $tmt = date('Y-m-d', $this->txtAddTMT->TimeStamp);
-            $status_sertifikasi = addslashes($this->cmbAddStatusSertifikasi->Text);
-            $kode_bidang_studi = addslashes($this->cmbAddBidangStudi->Text);
-            $th_sertifikasi = date('Y', $this->txtAddTahunSertifikasi->TimeStamp);
-            $no_sertifikasi = addslashes($this->txtAddNoSertifikasi->Text);
-            $no_nuks = addslashes($this->txtAddNoNUKS->Text);
-            $tgl_nuks_sertifikat = date('Y-m-d', $this->txtAddSertifikatNUKS->TimeStamp);
-            $predikat_nuks_sertifikat = addslashes($this->txtAddPredikatNUKS->Text);
-            $berjenjang_sertifikat = addslashes($this->txtAddSertifikatBerjenjang->Text);
-            $th_berjenjang_sertifikat = date('Y', $this->txtAddSertifikatBerjenjang->TimeStamp);
-            $no_hp = addslashes($this->txtAddNoHP->Text);
-            $alamat = addslashes($this->txtAddAlamat->Text);
-            $str = "INSERT INTO pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat'";
+            $nomor_sk = addslashes($this->txtAddNomorSK->Text);
+            $tanggal_sk = date('Y-m-d', $this->txtAddTanggalSK->TimeStamp);
+            $tmt = date('Y-m-d', $this->txtAddTanggalTMT->TimeStamp);
+            $pendidikan = addslashes($this->txtAddPendidikan->Text);
+            $unit_kerja = addslashes($this->cmbAddSekolah->Text);
+            $nip = addslashes($this->cmbAddNIP->Text);
+            
+            $str = "INSERT INTO r_kepangkatan SET golongan='$golongan',pangkat='$pangkat',nomor_sk='$nomor_sk',tanggal_sk='$tanggal_sk',tmt='$tmt',pendidikan='$pendidikan',unit_kerja='$unit_kerja',nip='$nip'";
             $this->DB->insertRecord($str);
             $this->Redirect('riwayat.Kepangkatan', true);
+            
         }
     }
 

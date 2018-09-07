@@ -14,7 +14,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">TAMBAH RIWAYAT PENDIDIKAN</h4>
                     <div class="heading-elements">
-                        <a href="<%=$this->Page->constructUrl('riwayat.Pekerjaan',true)%>" class="btn btn-danger btn-xs">
+                        <a href="<%=$this->Page->constructUrl('riwayat.Pendidikan',true)%>" class="btn btn-danger btn-xs">
                             <i class="ti ti-close"></i>
                         </a>
                     </div>
@@ -38,30 +38,72 @@
                                 </com:TRequiredFieldValidator>
                             </div>
                         </div>
-                        <div class="form-group" id="divAddSekolah">
-                            <label class="col-md-2 control-label">Nama Sekolah</label>
+                        <div class="form-group" id="divAddJenjang">
+                            <label class="col-md-2 control-label">Jenjang</label>
                             <div class="col-md-10">
-                                <com:TDropDownList ID="cmbAddSekolah" CssClass="form-control" />
-                                <com:TRequiredFieldValidator ID="FieldAddSekolahValidator" InitialValue="none" ControlToValidate="cmbAddSekolah" Display="Dynamic" ErrorMessage="Pilih" ValidationGroup="addpegawai" CssClass="has-error help-block">
+                                <com:TDropDownList ID="cmbAddJenjang" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldAddJenjangValidator" InitialValue="none" ControlToValidate="cmbAddJenjang" Display="Dynamic" ErrorMessage="Pilih" ValidationGroup="addpegawai" CssClass="has-error help-block">
                                     <prop:ClientSide.OnValidationError>
-                                        $('#divAddSekolah').addClass('has-error');                  
+                                        $('#divAddJenjang').addClass('has-error');                  
                                     </prop:ClientSide.OnValidationError>
                                     <prop:ClientSide.OnValidationSuccess>
-                                        $('#divAddSekolah').removeClass('has-error');
+                                        $('#divAddJenjang').removeClass('has-error');
                                     </prop:ClientSide.OnValidationSuccess>
                                 </com:TRequiredFieldValidator>
                             </div>
                         </div>
-                        <div class="form-group" id="divAddTanggalTMT">
-                            <label class="col-md-2 control-label">Tanggal TMT:</label>
+                        <div class="form-group" id="divAddNamaSekolah">
+                            <label class="col-md-2 control-label">Nama Sekolah:</label>
                             <div class="col-md-10">
-                                <com:TDatePicker ID="txtAddTanggalTMT" DateFormat="dd-MMMM-yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                                <com:TTextBox ID="txtAddNamaSekolah" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddNamaSekolahValidator" ControlToValidate="txtAddNamaSekolah" Display="Dynamic" ErrorMessage="Isi Nama Sekolah" ValidationGroup="addpendidikan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddNamaSekolah').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddNamaSekolah').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddNamaJurusan">
+                            <label class="col-md-2 control-label">Jurusan :</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtAddNamaJurusan" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddNamaJurusanValidator" ControlToValidate="txtAddNamaJurusan" Display="Dynamic" ErrorMessage="Isi Nama Jurusan" ValidationGroup="addpendidikan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddNamaJurusan').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddNamaJurusan').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddTahunLulus">
+                            <label class="col-md-2 control-label">Tahun Lulus</label>
+                            <div class="col-md-10">
+                                <com:TDatePicker ID="txtAddTanggalTMT" DateFormat="yyyy" Culture="id" FromYear="1940" UpToYear="<%= @date('Y') %>" InputMode="DropDownList" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divAddIPK">
+                            <label class="col-md-2 control-label">IPK:</label>
+                            <div class="col-md-10">
+                                <com:TTextBox ID="txtAddIPK" CssClass="form-control" />             
+                                <com:TRequiredFieldValidator ID="FieldAddIPKValidator" ControlToValidate="txtAddIPK" Display="Dynamic" ErrorMessage="Isi IPK" ValidationGroup="addpendidikan" FocusOnError="true">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divAddIPK').addClass('has-error');                              
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divAddIPK').removeClass('has-error');                                 
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>                                 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">&nbsp;</label>
                             <div class="col-md-10">
-                                <com:TActiveButton ID="btnSave" CssClass="btn btn-primary" ValidationGroup="addsekolah" Onclick="saveData">                       
+                                <com:TActiveButton ID="btnSave" CssClass="btn btn-primary" ValidationGroup="addpendidikan" Onclick="saveData">                       
                                     <prop:Text>                            
                                         Save
                                     </prop:Text>
@@ -91,7 +133,7 @@
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
-                    <h4 class="panel-title">UBAH RIWAYAT pendidikan</h4>
+                    <h4 class="panel-title">UBAH RIWAYAT PENDIDIKAN</h4>
                     <div class="heading-elements">
                         <a href="<%=$this->Page->constructUrl('dmaster.Sekolah',true)%>" class="btn btn-danger btn-xs">
                             <i class="ti ti-close"></i>
@@ -100,7 +142,7 @@
                 </div>
                 <div class="panel-body">
                     <p class="desc">
-                        ubah riwayat pekerjaan               
+                        ubah riwayat pendidikan               
                     </p>             
                     <div class="form-horizontal">
                         <div class="form-horizontal">
@@ -221,7 +263,7 @@
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
-                    <h4 class="panel-title">DAFTAR SEKOLAH</h4>
+                        <h4 class="panel-title">DAFTAR RIWAYAT PENDIDIKAN</h4>
                     <div class="heading-elements">
                         <com:TButton OnClick="addProcess" ID="add" CausesValidation="false" CssClass="btn btn-grey btn-sm" Attributes.Title="Tambah USER" ButtonType="Button" ButtonTag="Button">
                             <prop:Text>
@@ -233,7 +275,7 @@
                 <!-- END panel-heading -->
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
-                    <p class="desc">daftar sekolah</p>
+                    <p class="desc">data riwayat pendidikan</p>
                     <div class="table-responsive">
                         <com:TActiveRepeater ID="RepeaterS" AllowPaging="true" AllowCustomPaging="true" DataKeyField="id">
                             <prop:HeaderTemplate>			
@@ -244,7 +286,6 @@
                                             <th scope="col" width="100">NIP</th>
                                             <th scope="col" width="300">NAMA</th>
                                             <th scope="col" width="250">SEKOLAH</th>
-                                            <th scope="col" width="250">TMT</th>
                                             <th scope="col" width="100">AKSI</th>
                                         </tr>								
                                     </thead>
@@ -256,7 +297,6 @@
                                             <td><%# $this->Data['nip']%></td>
                                             <td><%# $this->Data['nama_lengkap']%></td>
                                             <td><%# $this->Data['nm_sekolah']%></td>		
-                                            <td><%# $this->Data['tmt']%></td>                                
                                             <td class="btn-col" style="white-space: nowrap">                                        
                                         <com:TLinkButton Text="<i class='ti ti-pencil'></i>" OnClick="Page.editRecord" Attributes.Title="Ubah Data SEKOLAH" CssClass="btn btn-purple btn-xs" />
                                         <com:TActiveLinkButton ID="btnDelete" Text="<i class='ti ti-trash'></i>" OnClick="Page.deleteRecord" ClientSide.PostState="false" Attributes.OnClick="if(!confirm('Apakah Anda ingin menghapus SEKOLAH ini ?')) return false;" Attributes.Title="Hapus Data SEKOLAH" CssClass="btn btn-danger btn-xs">

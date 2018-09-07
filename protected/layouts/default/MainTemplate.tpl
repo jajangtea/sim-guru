@@ -154,6 +154,12 @@
                                 <span>Pekerjaan</span>
                             </a>
                         </li>
+                        <li<%=$this->Page->showPendidikan===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Pendidikan',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Pendidikan</span>
+                            </a>
+                        </li>
                         <li class="nav-divider"></li>
                         <li class="nav-header">Setting</li>
                         <li class="has-sub<%=$this->Page->showSettingUser===true?' active':''%>">
