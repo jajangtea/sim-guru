@@ -8,7 +8,7 @@
 </com:TContent>
 <com:TContent ID="maincontent">  
     <com:TPanel Visible="<%= $this->getAddProcess(false) %>" CssClass="row">   
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">
@@ -149,7 +149,7 @@
     <com:TPanel Visible="<%= $this->getEditProcess(false) %>" CssClass="row">  
         <com:THiddenField ID="hiddenid" />
         <com:THiddenField ID="hiddenemail" />    
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
                 <div class="panel-heading">

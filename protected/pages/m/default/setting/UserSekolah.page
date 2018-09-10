@@ -12,6 +12,7 @@
     <com:TPanel Visible="<%= $this->getEditProcess(false) %>" CssClass="row">
         <com:THiddenField ID="hiddenid" />
         <com:THiddenField ID="hiddenusername" />
+        <com:THiddenField ID="hiddenkodesekolah"/>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <!-- BEGIN panel-heading -->
@@ -62,6 +63,20 @@
                                         $('#divEditPassword').removeClass('has-error');		                            
                                     </prop:ClientSide.OnValidationSuccess>
                                 </com:TRequiredFieldValidator>                   
+                            </div>
+                        </div>
+                        <div class="form-group" id="divEditSekolah">
+                            <label class="col-md-2 control-label">Nama Sekolah</label>
+                            <div class="col-md-10">
+                                <com:TDropDownList ID="cmbEditSekolah" CssClass="form-control" />
+                                <com:TRequiredFieldValidator ID="FieldEditSekolahValidator" InitialValue="none" ControlToValidate="cmbEditSekolah" Display="Dynamic" ErrorMessage="Pilih" ValidationGroup="addpegawai" CssClass="has-error help-block">
+                                    <prop:ClientSide.OnValidationError>
+                                        $('#divEditSekolah').addClass('has-error');                  
+                                    </prop:ClientSide.OnValidationError>
+                                    <prop:ClientSide.OnValidationSuccess>
+                                        $('#divEditSekolah').removeClass('has-error');
+                                    </prop:ClientSide.OnValidationSuccess>
+                                </com:TRequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group">
@@ -211,7 +226,7 @@
                                         <tr>
                                             <th width="15">NO</th>                                
                                             <th>USERNAME</th>
-                                            <th>EMAIL</th>                        
+                                            <th>SEKOLAH</th>                        
                                             <th width="120">AKSI</th>
                                         </tr>								
                                     </thead>
@@ -221,7 +236,7 @@
                                         <tr>				
                                             <td><%#$this->Data['no']%></td>                            
                                             <td><%#$this->Data['username']%></td>
-                                            <td><%#$this->Data['email']%></td>                            
+                                            <td><%#$this->Data['sekolah']%></td>                            
                                             <td class="btn-col" style="white-space: nowrap">
                                         <com:TLinkButton Text="<i class='ti ti-pencil'></i>" OnClick="Page.editRecord" Attributes.Title="Ubah Data USER" CssClass="btn btn-purple btn-xs" />
                                         <com:TActiveLinkButton ID="btnDelete" Text="<i class='ti ti-trash'></i>" OnClick="Page.deleteRecord" ClientSide.PostState="false" Attributes.OnClick="if(!confirm('Apakah Anda ingin menghapus USER ini ?')) return false;" Attributes.Title="Hapus Data USER" CssClass="btn<%#$this->Data['userid']==1?' btn-default':' btn-danger'%> btn-xs" Enabled="<%#$this->Data['userid']!=1%>">

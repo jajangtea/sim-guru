@@ -39,6 +39,13 @@ class Logic_DMaster extends Logic_Global {
         return $dataitem;
     }
     
+    public function getListJenjang() {
+        $jk = array('none' => 'Pilih', 'SD' => 'SD', 'SMP' => 'SMP','SMA' => 'SMA','SMK' => 'SMK','S1' => 'S1','S2' => 'S2','S3' => 'S3');
+        return $jk;
+    }
+    
+    
+    
     public function getListNIP() {
         $dataitem = $this->getList("pegawai", array('nip', 'nama_lengkap'), 'nip', null, 1);
         $dataitem['none'] = 'Daftar Pegawai';

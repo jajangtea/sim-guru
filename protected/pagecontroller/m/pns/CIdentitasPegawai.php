@@ -91,7 +91,10 @@ class CIdentitasPegawai extends MainPageM {
         $this->cmbAddStatusSertifikasi->dataSource = $this->DMaster->getListStatus();
         $this->cmbAddStatusSertifikasi->dataBind();
     }
-
+     public function viewDetailPegawai ($sender, $param) {        
+        $nip = $this->getDataKeyField($sender, $this->RepeaterS);
+        
+    }
     public function checkNIP($sender, $param) {
         $this->idProcess = $sender->getId() == 'checkAddNIP' ? 'add' : 'edit';
         $nip = $param->Value;

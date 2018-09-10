@@ -137,7 +137,7 @@ class CKepangkatan extends MainPageM {
             $alamat = addslashes($this->txtAddAlamat->Text);
             $str = "INSERT INTO pegawai SET nip='$nip', nuptk='$nuptk', npwp='$npwp', nama_lengkap='$nama_lengkap', jk='$jk', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', agama='$agama', email='$email', gol_ruang='$gol_ruang', pangkat='$pangkat', status_kepegawaian='$status_kepegawaian', status_perkawinan='$status_perkawinan', nama_suami_istri='$nama_suami_istri', no_kartu='$no_kartu', no_karis='$no_karis', no_karsu='$no_karsu', no_rek='$no_rek', nm_bank='$nm_bank', rek_bank_an='$rek_bank_an', kode_sekolah='$kode_sekolah', tmt='$tmt', status_sertifikasi='$status_sertifikasi', kode_bidang_studi='$kode_bidang_studi', th_sertifikasi='$th_sertifikasi', no_sertifikasi='$no_sertifikasi', no_nuks='$no_nuks', tgl_nuks_sertifikat='$tgl_nuks_sertifikat', predikat_nuks_sertifikat='$predikat_nuks_sertifikat', berjenjang_sertifikat='$berjenjang_sertifikat', th_berjenjang_sertifikat='$th_berjenjang_sertifikat', no_hp='$no_hp', alamat='$alamat'";
             $this->DB->insertRecord($str);
-            $this->Redirect('pns.Kepangkatan', true);
+            $this->Redirect('riwayat.Kepangkatan', true);
         }
     }
 
@@ -147,33 +147,12 @@ class CKepangkatan extends MainPageM {
         $this->hiddenid->Value = $id_kepangkatan;
 
 
-        $str = "SELECT * FROM r_kepangkatan WHERE id_kepangkatan='$id_kepangkatan'";
-        $this->DB->setFieldTable(array('id', 'golongan', 'pangkat', 'nomor_sk', 'tanggal_sk', 'tmt', 'pendidikan', 'unit_kerja', 'nip'));
-        $r = $this->DB->getRecord($str);
-        $result = $r[1];
-//        
-//        $str_pegawai = "SELECT * FROM pegawai WHERE id='$id_kepangkatan'";
-//        $datakepangkatan = $this->DB->getRecord($str_pegawai);
-//        $this->DB->setFieldTable(array('id', 'nama_lengkap'));
-//        $r = $this->DB->getRecord($str);
-//        $idpegawai=$r[1]['id'];
-//
-//
 //        $str = "SELECT * FROM r_kepangkatan WHERE id_kepangkatan='$id_kepangkatan'";
-//        while (list($k, $v) = each($datakepangkatan)) {
-//            $idkepangkatan = $v['id'];
-//            $daftar_pegawai[$idkepangkatan] = $v['nama'] . '[' . $v['nidn'] . ']';
-//        }
-        $this->txtEditNomorSK->Text = $result['nomor_sk'];
- //       $this->txtEditAlamat->Text = $result['alamat'];
-//        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
-//        $this->cmbEditKecamatan->dataBind();
-//        $this->cmbEditKecamatan->Text = $result['idkecamatan'];
-//        $this->txtEditEmail->Text = $result['email'];
-//        $this->hiddenemail->Value = $result['email'];
-//        $this->txtEditRombel->Text = $result['jumlah_rombel'];
+//        $this->DB->setFieldTable(array('id', 'golongan', 'pangkat', 'nomor_sk', 'tanggal_sk', 'tmt', 'pendidikan', 'unit_kerja', 'nip'));
+//        $r = $this->DB->getRecord($str);
+//        $result = $r[1];
 //
-//        $this->cmbEditStatus->Text = $result['status'];
+//        $this->txtEditNomorSK->Text = $result['nomor_sk'];
     }
 
     public function updateData($sender, $param) {

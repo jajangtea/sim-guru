@@ -1025,27 +1025,41 @@
                                     <prop:ItemTemplate>
                                         <tr>
                                             <td><%# $this->Data['no']%></td>
-                                            <td><%# $this->Data['nip']%></td>
+                                            <td>
+                                                <com:TActiveLinkButton ID="btnView" Text="<%# $this->Data['nip']%>" OnClick="Page.viewDetailPegawai" ClientSide.PostState="false"  Attributes.Title="View Detail Pegawai">
+                                                    <prop:ClientSide.OnPreDispatch>         
+                                                        Pace.stop();
+                                                        Pace.start();
+                                                        $('#<%=$this->btnView->ClientId%>').prop('disabled',true);         
+                                                    </prop:ClientSide.OnPreDispatch>
+                                                    <prop:ClientSide.OnLoading>
+                                                        $('#<%=$this->btnView->ClientId%>').prop('disabled',true);                     
+                                                    </prop:ClientSide.OnLoading>
+                                                    <prop:ClientSide.OnComplete>                                                                    
+                                                        $('#<%=$this->btnView->ClientId%>').prop('disabled',false);                                                                                                                 
+                                                    </prop:ClientSide.OnComplete>
+                                                </com:TActiveLinkButton>                                                                                                
+                                            </td>
                                             <td><%# $this->Data['nama_lengkap']%></td>
                                             <td><%# $this->Data['gol_ruang']%></td>		
                                             <td><%# $this->Data['pangkat']%></td>                                
                                             <td><%# $this->Data['tmt']%></td>
                                             <td class="btn-col" style="white-space: nowrap">                                        
-                                        <com:TLinkButton Text="<i class='ti ti-pencil'></i>" OnClick="Page.editRecord" Attributes.Title="Ubah Data Pegawai" CssClass="btn btn-purple btn-xs" />
-                                        <com:TActiveLinkButton ID="btnDelete" Text="<i class='ti ti-trash'></i>" OnClick="Page.deleteRecord" ClientSide.PostState="false" Attributes.OnClick="if(!confirm('Apakah Anda ingin menghapus SEKOLAH ini ?')) return false;" Attributes.Title="Hapus Data SEKOLAH" CssClass="btn btn-danger btn-xs">
-                                            <prop:ClientSide.OnPreDispatch>         
-                                                Pace.stop();
-                                                Pace.start();
-                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);         
-                                            </prop:ClientSide.OnPreDispatch>
-                                            <prop:ClientSide.OnLoading>
-                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);                     
-                                            </prop:ClientSide.OnLoading>
-                                            <prop:ClientSide.OnComplete>                                                                    
-                                                $('#<%=$this->btnDelete->ClientId%>').prop('disabled',false);                                                                                                                 
-                                            </prop:ClientSide.OnComplete>
-                                        </com:TActiveLinkButton>    
-                                        </td>				                                 
+                                                <com:TLinkButton Text="<i class='ti ti-pencil'></i>" OnClick="Page.editRecord" Attributes.Title="Ubah Data Pegawai" CssClass="btn btn-purple btn-xs" />
+                                                <com:TActiveLinkButton ID="btnDelete" Text="<i class='ti ti-trash'></i>" OnClick="Page.deleteRecord" ClientSide.PostState="false" Attributes.OnClick="if(!confirm('Apakah Anda ingin menghapus SEKOLAH ini ?')) return false;" Attributes.Title="Hapus Data SEKOLAH" CssClass="btn btn-danger btn-xs">
+                                                    <prop:ClientSide.OnPreDispatch>         
+                                                        Pace.stop();
+                                                        Pace.start();
+                                                        $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);         
+                                                    </prop:ClientSide.OnPreDispatch>
+                                                    <prop:ClientSide.OnLoading>
+                                                        $('#<%=$this->btnDelete->ClientId%>').prop('disabled',true);                     
+                                                    </prop:ClientSide.OnLoading>
+                                                    <prop:ClientSide.OnComplete>                                                                    
+                                                        $('#<%=$this->btnDelete->ClientId%>').prop('disabled',false);                                                                                                                 
+                                                    </prop:ClientSide.OnComplete>
+                                                </com:TActiveLinkButton>    
+                                            </td>				                                 
                                         </tr>
                                     </prop:ItemTemplate>				                
                                     <prop:FooterTemplate>               

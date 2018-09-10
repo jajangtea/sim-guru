@@ -2,3 +2,4 @@ assets/*
 !assets/.gitkeep
 protected/runtime/application.xml-*
 protected/vendor/*
+nbproject/*
