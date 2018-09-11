@@ -192,17 +192,6 @@ class CIdentitasPegawai extends MainPageM {
         $this->txtEditNoHP->Text = $result['no_hp'];
         $this->txtEditAlamat->Text = $result['alamat'];
 
-
-//        $this->txtEditNama->Text = $result['nama'];
-//        $this->txtEditAlamat->Text = $result['alamat'];
-//        $this->cmbEditKecamatan->dataSource = $this->DMaster->getListKecamatan();
-//        $this->cmbEditKecamatan->dataBind();
-//        $this->cmbEditKecamatan->Text = $result['idkecamatan'];
-//        $this->txtEditEmail->Text = $result['email'];
-//        $this->hiddenemail->Value = $result['email'];
-//        $this->txtEditRombel->Text = $result['jumlah_rombel'];
-//
-//        $this->cmbEditStatus->Text = $result['status'];
     }
 
     public function updateData($sender, $param) {
