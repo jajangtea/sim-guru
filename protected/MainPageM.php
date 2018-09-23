@@ -2,9 +2,25 @@
 
 class MainPageM extends MainPage {   
     /**     
-     * show menu data master
+     * show menu data master 
      */
     public $showDMaster=false; 
+     /**     
+     * show menu showPenghargaan
+     */
+    public $showPenghargaan=false; 
+     /**     
+     * show menu showTkasek
+     */
+    public $showTkasek=false; 
+     /**     
+     * show menu showTpegawai
+     */
+    public $showTpegawai=false; 
+     /**     
+     * show menu showTunjangan
+     */
+    public $showTunjangan=false; 
      /**     
      * show menu showPendidikan
      */

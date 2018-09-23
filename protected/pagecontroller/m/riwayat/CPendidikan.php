@@ -114,9 +114,6 @@ class CPendidikan extends MainPageM {
         $this->txtEditIPK->Text = $result['ipk'];
         $this->txtEditNamaJurusan->Text = $result['nm_jurusan'];
         $this->txtEditTahunLulus->Text=$this->TGL->tanggal('Y',$result['th_lulus'].date('-01-01'));
-      //echo $result['th_lulus'].date('-01-01');
-      //exit();
-        //date('Y-m-d', $this->txtEditTahunLulus->TimeStamp)= ['th_lulus'];
     }
 
     public function updateData($sender, $param) {

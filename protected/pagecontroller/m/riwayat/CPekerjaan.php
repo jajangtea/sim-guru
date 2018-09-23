@@ -123,7 +123,7 @@ class CPekerjaan extends MainPageM {
         $result = $r[1];
         $this->cmbEditSekolah->Text = $result['nm_sekolah'];
         $this->cmbEditNIP->Text = $result['nip'];
-        $this->txtEditTanggalTMT->TimeStamp = $result['tmt'];
+        $this->txtEditTanggalTMT->Text=$this->TGL->tanggal('d-m-Y',$result['tmt']);
     }
 
     public function updateData($sender, $param) {

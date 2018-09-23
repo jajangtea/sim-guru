@@ -160,6 +160,30 @@
                                 <span>Pendidikan</span>
                             </a>
                         </li>
+                         <li<%=$this->Page->showPenghargaan===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Penghargaan',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Penghargaan</span>
+                            </a>
+                        </li>
+                        <li<%=$this->Page->showTunjangan===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Tunjangan',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Tunjangan</span>
+                            </a>
+                        </li>
+                        <li<%=$this->Page->showTkasek===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Tkasek',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Tugas Tambahan Kepala Sekolah</span>
+                            </a>
+                        </li>   
+                        <li<%=$this->Page->showTpegawai===true?' class="active"':''%>>
+                            <a href="<%=$this->Page->constructUrl('riwayat.Tpegawai',true)%>">
+                                <i class="ti-shortcode"></i>
+                                <span>Tugas Tambahan Pegawai</span>
+                            </a>
+                        </li>                       
                         <li class="nav-divider"></li>
                         <li class="nav-header">Setting</li>
                         <li class="has-sub<%=$this->Page->showSettingUser===true?' active':''%>">
