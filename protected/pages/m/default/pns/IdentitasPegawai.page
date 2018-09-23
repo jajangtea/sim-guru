@@ -1,4 +1,4 @@
-t<%@ Title="Data Master - Identitas Pegawai" %>
+<%@ Title="Data Master - Identitas Pegawai" %>
 <com:TContent ID="moduleheader">
     IDENTITAS PEGAWAI
 </com:TContent>
